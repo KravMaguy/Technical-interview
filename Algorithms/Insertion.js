@@ -4,7 +4,7 @@ const insert=(arr)=>{
         for(let j=0;j<i;j++){
             if(arr[j]>arr[i]){
                 let holder=arr.splice(i,1)
-                arr.splice(j,0,holder)
+                arr.splice(j,0,holder[0])
 
             }
         }
