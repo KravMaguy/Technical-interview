@@ -17,10 +17,21 @@ var DoublyLinkedList = function () {
     // change code below this line
 
     this.add = function (data) {
-
+        let previous;
         let node = new Node(data)
-
-
+        if(!this.head){
+            this.head=node
+            this.tail=node
+        } else {
+            let current=this.head
+            while(current.next){
+                current=current.next
+                previous=current
+            }
+            current.next=node
+            previous=current
+            this.tail=node
+        }
     }
 
     this.isConnected = function () {
@@ -107,3 +118,5 @@ console.log('head=', d.head, '\n', 'tail=', d.tail)
 console.log('count up from method=', d.countFrom())
 
 console.log('count down from method =', d.countFrom(''))
+
+d.isConnected()
