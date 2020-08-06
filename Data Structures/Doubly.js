@@ -19,22 +19,40 @@ var DoublyLinkedList = function () {
     this.add = function (data) {
         let previous;
         let node = new Node(data)
-        if(!this.head){
-            this.head=node
-            this.tail=node
+        if (!this.head) {
+            this.head = node
+            this.tail = node
         } else {
-            let current=this.head
-            while(current.next){
-                previous=current
-                current=current.next
-                current.prev=previous
+            let current = this.head
+            while (current.next) {
+                previous = current
+                current = current.next
+                current.prev = previous
             }
-            current.next=node
-            previous=current
-            node.prev=current
-            this.tail=node
+            current.next = node
+            previous = current
+            node.prev = current
+            this.tail = node
         }
     }
+
+    this.remove = function (data) {
+
+        if (!this.head) { return null }
+        if (this.head.data == data) { this.head = this.head.next; this.head.prev = undefined }
+        else {
+            console.log('the data is not the head')
+
+            let current = this.head
+            while (current.data !== data) {
+                current = current.next
+            }
+            current.prev.next = current.next;
+            current.next ? current.next.prev = current.prev : this.tail = current.prev
+        }
+    }
+
+
 
     this.isConnected = function () {
         let up = this.countFrom('head')
@@ -114,6 +132,7 @@ d.add(4)
 
 d.add(5)
 
+d.remove(5)
 
 console.log('head=', d.head)
 console.log('tail=', d.tail)
