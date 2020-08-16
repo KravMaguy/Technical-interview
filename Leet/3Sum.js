@@ -9,17 +9,20 @@ const threeSum=(array, target)=>{
                 b=array[j]
                 c=array[k]
                 if(a+b+c===target){
-                    holder.push([a,b,c].sort())
+                    holder.push(a,b,c)
                 }
             }
         }
     }
-    // return holder
-    const setArray = new Set(holder.map(x => JSON.stringify(x)))
-    const uniqArray = [...setArray].map(x => JSON.parse(x))
-    return uniqArray;
+    const mySet=new Set()
+    holder.forEach(x=>mySet.add(x))
+    return mySet
+    //  return holder
+    // const setArray = new Set(holder.map(x => JSON.stringify(x)))
+    // const uniqArray = [...setArray].map(x => JSON.parse(x))
+    // return uniqArray;
 }
-console.log(threeSum([2,4,3,-2,0,1,-1,0],0))
+console.log(threeSum([2,4,3,-2,0,1,-1,0,39],0))
 
 
 // Conver the 2D array into 1D array with stringified elements
