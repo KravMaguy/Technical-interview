@@ -4,10 +4,12 @@ function Node(value) {
     this.left = null;
     this.right = null;
 }
-function BinarySearchTree() {
-    this.root = null;
+class BinarySearchTree {
+    constructor(root) {
+        this.root = null;
+      }
     // change code below this line
-    this.add = (data) => {
+    add(data){
         let node = this.root
         if (node === null) {
             return this.root = new Node(data);
@@ -34,9 +36,5 @@ function BinarySearchTree() {
     }
 }
 
-let myTree = new BinarySearchTree()
-myTree.add(1)
-myTree.add(2)
-myTree.add(3)
-myTree.add(-1)
-displayTree(myTree)
+// displayTree(myTree)
+module.exports = { displayTree, BinarySearchTree, Node }
