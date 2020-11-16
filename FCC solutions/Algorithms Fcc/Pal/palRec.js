@@ -1,8 +1,8 @@
 function palindrome(str) {
 
     // str = str.toUpperCase().replace(/[_\W+]/g, '')    
-    // str = str.toUpperCase().replaceAll(/[^A-Za-z0-9]/g, '')       
-    str = str.toLowerCase().replace(/[^0-9a-z]/g, '')
+    str = str.toUpperCase().replace(/[^A-Za-z0-9]/g, '')       
+    // str = str.toLowerCase().replace(/[^0-9a-z]/g, '')
     // str = str.replace(/[^0-9a-z]/gi, '').toLowerCase()
   
     //remove the a-z
