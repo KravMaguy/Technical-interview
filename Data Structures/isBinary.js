@@ -29,6 +29,19 @@ function BinarySearchTree() {
 }
 function isBinarySearchTree(tree) {
     // Only change code below this line
+    let flag = true
+    const inEfficient = (a) => {
+        for (let i = 0; i < a.length - 1; i++) {
+            if (a[i] < a[i + 1]) {
+
+            } else {
+                flag = false
+                console.log('not a bst')
+                return flag
+            }
+        }
+        return flag
+    }
     let current = tree.root
     let holder = []
     tree.inOrder = function (current) {
@@ -38,6 +51,7 @@ function isBinarySearchTree(tree) {
     }
     tree.inOrder(current)
     console.log(holder)
+    inEfficient(holder)
     // Only change code above this line
 }
 let a = [5, 25, -10, 100, -30, 17]
