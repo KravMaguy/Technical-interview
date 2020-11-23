@@ -51,7 +51,7 @@ function isBinarySearchTree(tree) {
     }
     tree.inOrder(current)
     console.log(holder)
-    inEfficient(holder)
+    return inEfficient(holder)
     // Only change code above this line
 }
 let a = [5, 25, -10, 100, -30, 17]
