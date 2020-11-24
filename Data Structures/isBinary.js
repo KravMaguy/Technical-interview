@@ -20,6 +20,19 @@ function BinarySearchTree() {
         return getMaxDepth(root)
     }
 
+    this.findMinHeight = function () {
+        let root = this.root
+        let leftHeightOfSub;
+        let rightHeightOfSub;
+        const getMaxDepth = (root) => {
+            if (root === null) { return -1 }
+            leftHeightOfSub = getMaxDepth(root.left)
+            rightHeightOfSub = getMaxDepth(root.right)
+            return Math.min(leftHeightOfSub, rightHeightOfSub) + 1
+        }
+        return getMaxDepth(root)
+    }
+
     this.add = function (data) {
         if (this.root === null) {
             return this.root = new Node(data)
