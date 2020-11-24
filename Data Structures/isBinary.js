@@ -47,7 +47,9 @@ function BinarySearchTree() {
         recurse(root)
         return stack
     }
+    this.levelOrder = function () {
 
+    }
     this.preorder = function () {
         if (!this.root) { return null }
         let root = this.root
@@ -94,6 +96,29 @@ function BinarySearchTree() {
                 current = current.left
             }
         }
+    }
+
+    this.levelOrder = function () {
+        if (!this.root) { return null }
+        let toReturn = []
+        let holder = []
+        let q = []
+        let root = this.root
+        q.push(root)
+        //as long as q is not empty we can take out a node from the front visit it and enque its children
+        while (q.length > 0) {
+            //  toReturn.push(q[0].value)
+            holder[holder.length] = q.shift(q[0])
+            console.log(holder[holder.length - 1].value)
+            if (holder[holder.length - 1].right) {
+                q.push(holder[holder.length - 1].right)
+            }
+            if (holder[holder.length - 1].left) {
+                q.push(holder[holder.length - 1].left)
+            }
+        }
+        //  console.log(toReturn, 'toreturn')
+
     }
 }
 function isBinarySearchTree(tree) {
