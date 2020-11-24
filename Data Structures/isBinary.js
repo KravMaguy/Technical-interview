@@ -6,7 +6,9 @@ function Node(value) {
 }
 function BinarySearchTree() {
     this.root = null;
-
+    this.isBalanced = function () {
+        return this.findMaxHeight() - this.findMinHeight() <= 1 ? true : false
+    }
     this.findMaxHeight = function () {
         let root = this.root
         let leftHeightOfSub;
