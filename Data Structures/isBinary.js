@@ -122,6 +122,24 @@ function BinarySearchTree() {
 
     }
 
+    this.remove = function (data) {
+        let root = this.root
+        let SearchTree = (root) => {
+            if (data === root.value) { return console.log("we found " + data) }
+            if (data > root.value) {
+                console.log(data + "is greater than" + root.value)
+                SearchTree(root.right)
+            } else if (data < root.value) {
+                console.log(data + "less than" + root.value)
+                SearchTree(root.left)
+            } else {
+                console.log("not found")
+            }
+        }
+        SearchTree(root)
+
+    }
+
     this.reverseLevelOrder = function () {
         if (!this.root) { return null }
         let toReturn = []
@@ -172,7 +190,7 @@ function isBinarySearchTree(tree) {
     return inEfficient(holder)
     // Only change code above this line
 }
-let a = [5, 25, -10, 100, -30, 17]
+let a = [8, 3, 10, 1, 6]
 
 let myTree = new BinarySearchTree()
 a.map(x => myTree.add(x))
