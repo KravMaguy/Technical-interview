@@ -48,6 +48,19 @@ function BinarySearchTree() {
         return stack
     }
 
+    this.preorder = function () {
+        if (!this.root) { return null }
+        let root = this.root
+        let stack = []
+        const recurse = (root) => {
+            stack.push(root.value)
+            root.left && recurse(root.left)
+            root.right && recurse(root.right)
+        }
+        recurse(root)
+        return stack
+    }
+
     this.add = function (data) {
         if (this.root === null) {
             return this.root = new Node(data)
