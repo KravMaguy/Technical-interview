@@ -35,6 +35,19 @@ function BinarySearchTree() {
         return getMaxDepth(root)
     }
 
+    this.inorder = function () {
+        if (!this.root) { return null }
+        let root = this.root
+        let stack = []
+        const recurse = (root) => {
+            root.left && recurse(root.left)
+            stack.push(root.value)
+            root.right && recurse(root.right)
+        }
+        recurse(root)
+        return stack
+    }
+
     this.add = function (data) {
         if (this.root === null) {
             return this.root = new Node(data)
@@ -84,6 +97,7 @@ function isBinarySearchTree(tree) {
     // Only change code above this line
 }
 let a = [5, 25, -10, 100, -30, 17]
+
 let myTree = new BinarySearchTree()
 a.map(x => myTree.add(x))
 // displayTree(myTree)
