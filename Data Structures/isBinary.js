@@ -6,6 +6,20 @@ function Node(value) {
 }
 function BinarySearchTree() {
     this.root = null;
+
+    this.findMaxHeight = function () {
+        let root = this.root
+        let leftHeightOfSub;
+        let rightHeightOfSub;
+        const getMaxDepth = (root) => {
+            if (root === null) { return -1 }
+            leftHeightOfSub = getMaxDepth(root.left)
+            rightHeightOfSub = getMaxDepth(root.right)
+            return Math.max(leftHeightOfSub, rightHeightOfSub) + 1
+        }
+        return getMaxDepth(root)
+    }
+
     this.add = function (data) {
         if (this.root === null) {
             return this.root = new Node(data)
