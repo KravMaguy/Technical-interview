@@ -98,6 +98,30 @@ function BinarySearchTree() {
         }
     }
 
+    this.levelOrder = function () {
+        if (!this.root) { return null }
+        let toReturn = []
+        let holder = []
+        let q = []
+        let root = this.root
+        q.push(root)
+        //as long as q is not empty we can take out a node from the front visit it and enque its children
+        while (q.length > 0) {
+            holder[holder.length] = q.shift(q[0])
+            console.log(holder[holder.length - 1].value)
+            toReturn.push(holder[holder.length - 1].value)
+            if (holder[holder.length - 1].left) {
+                q.push(holder[holder.length - 1].left)
+            }
+            if (holder[holder.length - 1].right) {
+                q.push(holder[holder.length - 1].right)
+            }
+        }
+        console.log(toReturn)
+        return toReturn
+
+    }
+
     this.reverseLevelOrder = function () {
         if (!this.root) { return null }
         let toReturn = []
