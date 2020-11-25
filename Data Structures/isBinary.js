@@ -164,27 +164,30 @@ function BinarySearchTree() {
     }
 
     this.remove = function (data) {
+        if (data === this.root.value && !this.root.left && !this.root.right) { return this.root = null }
         let stack = []
+        let nullflag
         let root = this.root
         let SearchTree = (root) => {
+            if (root === null) {
+                console.log('does not exist')
+                return nullflag = -1
+            }
             if (data === root.value) {
-                console.log(stack.length, "length of stack")
-                stack.forEach(root => console.log(root.value, "val of roots in stack"))
-
-                return console.log("we found " + data)
+                return stack[stack.length - 1].left.value === data ? stack[stack.length - 1].left = null : stack[stack.length - 1].right = null
             }
             if (data > root.value) {
                 stack.push(root)
                 SearchTree(root.right)
             } else if (data < root.value) {
-                stack.push(root.left)
+                stack.push(root)
                 SearchTree(root.left)
             } else {
-                console.log("not found")
+                console.log("no params")
             }
         }
         SearchTree(root)
-
+        if (nullflag === -1) { return null }
     }
 }
 function isBinarySearchTree(tree) {
