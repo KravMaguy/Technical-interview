@@ -162,6 +162,30 @@ function BinarySearchTree() {
         return toReturn
 
     }
+
+    this.remove = function (data) {
+        let stack = []
+        let root = this.root
+        let SearchTree = (root) => {
+            if (data === root.value) {
+                console.log(stack.length, "length of stack")
+                stack.forEach(root => console.log(root.value, "val of roots in stack"))
+
+                return console.log("we found " + data)
+            }
+            if (data > root.value) {
+                stack.push(root)
+                SearchTree(root.right)
+            } else if (data < root.value) {
+                stack.push(root.left)
+                SearchTree(root.left)
+            } else {
+                console.log("not found")
+            }
+        }
+        SearchTree(root)
+
+    }
 }
 function isBinarySearchTree(tree) {
     // Only change code below this line
