@@ -38,8 +38,16 @@ function BinarySearchTree() {
     }
     this.remove = function (data) {
         let rootNode = this.root
+        if (!this.root) { return null }
+        if (data === rootNode.value && !rootNode.left && !rootNode.right) {
+            return this.root = null
+        }
         let prev;
         const recurFind = (curr) => {
+            if (curr === null) {
+                console.log(curr, "curr")
+                return null
+            }
             if (data > curr.value) {
                 prev = curr
                 curr = curr.right
