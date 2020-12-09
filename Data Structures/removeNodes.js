@@ -74,11 +74,12 @@ function BinarySearchTree() {
                 } else {
                     //target has two children find min in right subtree
                     const findMinInRightSub = (node) => {
-                        console.log(node, 'read')
                         if (!node.left) {
-                            console.log(node, '=the min in right')
-                            return node
+                            prev.left = null
+                            curr.value = node.value
+                            return
                         } else {
+                            prev = node;
                             node = node.left
                             findMinInRightSub(node)
                         }
@@ -102,4 +103,4 @@ t.add(12);
 t.add(9)
 t.add(8)
 t.remove(7)
-// displayTree(t)
+displayTree(t, "t")
