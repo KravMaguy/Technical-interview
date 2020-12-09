@@ -58,12 +58,20 @@ function BinarySearchTree() {
                 recurFind(curr)
             } else if (data === curr.value) {
                 console.log(prev, 'prev')
-                if (prev.right.value === data) {
-                    prev.right = null
-                } else {
-                    prev.left = null
+                //test for a case with one child
+                if (!curr.left && !curr.right) {
+                    if (prev.right.value === data) {
+                        prev.right = null
+                    } else {
+                        prev.left = null
+                    }
+                } else if ((!curr.left && curr.right) || (curr.left && !curr.right)) {
+                    if (!curr.left) {
+                        prev.right = curr.right
+                    } else {
+                        prev.left = curr.left
+                    }
                 }
-                return console.log(data + " equals " + curr.value)
             }
         }
         recurFind(rootNode)
@@ -78,5 +86,5 @@ t.add(7);
 t.add(6);
 t.add(10);
 t.add(12);
-t.remove(3)
+t.remove(10)
 displayTree(t)
