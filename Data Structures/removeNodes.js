@@ -38,10 +38,29 @@ function BinarySearchTree() {
     }
     this.remove = function (data) {
         let rootNode = this.root
+
+
         if (!this.root) { return null }
-        if (data === rootNode.value && !rootNode.left && !rootNode.right) {
-            return this.root = null
+        if (data === rootNode.value) {
+            if (!rootNode.left && !rootNode.right) {
+                return this.root = null
+            }
+            if ((!rootNode.left && rootNode.right) || (rootNode.right && !rootNode.left)) {
+                if (rootNode.left) {
+                    console.log('reached 1')
+                    return this.root = rootNode.left
+                } else {
+                    console.log('reached 2')
+                    return this.root = rootNode.right
+                }
+            } else {
+                this.root.value = this.root.right.value
+                this.root.right = null
+                return
+            }
         }
+
+
         let prev;
         const recurFind = (curr) => {
             if (curr === null) {
@@ -95,12 +114,7 @@ function BinarySearchTree() {
 
 let t = new BinarySearchTree()
 t.add(5);
-t.add(3);
+t.add(3)
 t.add(7);
-t.add(6);
-t.add(10);
-t.add(12);
-t.add(9)
-t.add(8)
-t.remove(7)
+t.remove(5)
 displayTree(t, "t")
