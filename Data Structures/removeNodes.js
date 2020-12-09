@@ -39,17 +39,8 @@ function BinarySearchTree() {
     this.remove = function (data) {
         let rootNode = this.root
         if (!this.root) { return null }
-        if (data === rootNode.value) {
-            if (!rootNode.left && !rootNode.right) {
-                return this.root = null
-            }
-            if ((!rootNode.left && rootNode.right) || (rootNode.right && !rootNode.left)) {
-                if (rootNode.left) {
-                    return this.root = rootNode.left
-                } else {
-                    return this.root = rootNode.right
-                }
-            }
+        if (data === rootNode.value && !rootNode.left && !rootNode.right) {
+            return this.root = null
         }
         let prev;
         const recurFind = (curr) => {
@@ -66,7 +57,7 @@ function BinarySearchTree() {
                 curr = curr.left
                 recurFind(curr)
             } else if (data === curr.value) {
-                console.log(prev, 'prev')
+                // console.log(prev, 'prev')
                 //test for a case with one child
                 if (!curr.left && !curr.right) {
                     if (prev.right.value === data) {
@@ -80,6 +71,19 @@ function BinarySearchTree() {
                     } else {
                         prev.left = curr.left
                     }
+                } else {
+                    //target has two children find min in right subtree
+                    const findMinInRightSub = (node) => {
+                        console.log(node, 'read')
+                        if (!node.left) {
+                            console.log(node, '=the min in right')
+                            return node
+                        } else {
+                            node = node.left
+                            findMinInRightSub(node)
+                        }
+                    }
+                    findMinInRightSub(curr.right)
                 }
             }
         }
@@ -89,12 +93,13 @@ function BinarySearchTree() {
 }
 
 let t = new BinarySearchTree()
-// t.add(5);
-// t.add(3);
-// t.add(7);
-// t.add(6);
+t.add(5);
+t.add(3);
+t.add(7);
+t.add(6);
 t.add(10);
 t.add(12);
-t.remove(10)
-
-displayTree(t)
+t.add(9)
+t.add(8)
+t.remove(7)
+// displayTree(t)
