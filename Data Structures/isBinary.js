@@ -48,8 +48,25 @@ function BinarySearchTree() {
         return stack
     }
     this.levelOrder = function () {
-
+        if (!this.root) { return null }
+        let toPrint;
+        let toReturn = []
+        let q = []
+        let node = this.root
+        q.push(node)
+        while (q.length != 0) {
+            toPrint = q.shift()
+            if (toPrint.left) {
+                q.push(toPrint.left)
+            }
+            if (toPrint.right) {
+                q.push(toPrint.right)
+            }
+            toReturn.push(toPrint.value)
+        }
+        return toReturn
     }
+
     this.preorder = function () {
         if (!this.root) { return null }
         let root = this.root
@@ -142,25 +159,22 @@ function BinarySearchTree() {
 
     this.reverseLevelOrder = function () {
         if (!this.root) { return null }
+        let toPrint;
         let toReturn = []
-        let holder = []
         let q = []
-        let root = this.root
-        q.push(root)
-        //as long as q is not empty we can take out a node from the front visit it and enque its children
-        while (q.length > 0) {
-            holder[holder.length] = q.shift(q[0])
-            console.log(holder[holder.length - 1].value)
-            toReturn.push(holder[holder.length - 1].value)
-            if (holder[holder.length - 1].right) {
-                q.push(holder[holder.length - 1].right)
+        let node = this.root
+        q.push(node)
+        while (q.length != 0) {
+            toPrint = q.shift()
+            if (toPrint.right) {
+                q.push(toPrint.right)
             }
-            if (holder[holder.length - 1].left) {
-                q.push(holder[holder.length - 1].left)
+            if (toPrint.left) {
+                q.push(toPrint.left)
             }
+            toReturn.push(toPrint.value)
         }
         return toReturn
-
     }
 
     this.remove = function (data) {
