@@ -176,7 +176,23 @@ function BinarySearchTree() {
         }
         return toReturn
     }
-
+    this.invert = function () {
+        let root = this.root
+        const invert = (root) => {
+            if (root == null) {
+                debugger;
+                return null
+            } else {
+                debugger;
+                let left = invert(root.left)
+                let right = invert(root.right)
+                let temp = root.right
+                root.right = root.left
+                root.left = temp
+            }
+        }
+        invert(root)
+    }
     this.remove = function (data) {
         if (data === this.root.value && !this.root.left && !this.root.right) { return this.root = null }
         let stack = []
