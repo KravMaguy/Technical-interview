@@ -252,4 +252,5 @@ let a = [8, 3, 10, 1, 6]
 let myTree = new BinarySearchTree()
 a.map(x => myTree.add(x))
 // displayTree(myTree)
-isBinarySearchTree(myTree)
+myTree.invert()
+// isBinarySearchTree(myTree)
