@@ -2,7 +2,7 @@ const arr=[1,2,3,4,5,6,7,8,9,10]
 
 const findElem=(array, elem)=>{
   let min=0, max=array.length-1
-  if(elem<array[min]||elem>array[max]){
+  if(!elem||elem<array[min]||elem>array[max]){
     return console.log('not in array')
   }
   while(min<=max){
