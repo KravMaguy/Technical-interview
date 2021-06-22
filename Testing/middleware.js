@@ -13,6 +13,6 @@ module.exports = (req, res, next) => {
     let context
     context={page,limit,skip,search,searchTerm}
     req.context=context
-    next(req)
+    next()
  
 };
