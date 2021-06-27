@@ -1,19 +1,19 @@
 const axios = require("axios");
-const one = "https://jsonmock.hackerrank.com/api/article_users?page=1";
-const two = "https://jsonmock.hackerrank.com/api/article_users?page=2";
 async function getUsernames(threshold) {
-  let userNamesArray = [];
-  const requestOne = await axios.get(one);
-  const requestTwo = await axios.get(two);
-  axios.all([requestOne, requestTwo]).then(
+  const requestOne = await axios.get(
+    "https://jsonmock.hackerrank.com/api/article_users?page=1"
+  );
+  const requestTwo = await axios.get(
+    "https://jsonmock.hackerrank.com/api/article_users?page=2"
+  );
+  return axios.all([requestOne, requestTwo]).then(
     axios.spread((...responses) => {
       const responseOne = responses[0].data;
       const responseTwo = responses[1].data;
-      userNamesArray = [
+      return Array(
         ...makeUserArray(responseOne, threshold),
-        ...makeUserArray(responseTwo, threshold),
-      ];
-      console.log(userNamesArray);
+        ...makeUserArray(responseTwo, threshold)
+      );
     })
   );
 }
@@ -26,4 +26,8 @@ function makeUserArray({ data }, threshold) {
   return newfilteredUsers;
 }
 
-getUsernames(10);
+async function main() {
+  const result = await getUsernames(10);
+  console.log(result);
+}
+main();
